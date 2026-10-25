@@ -207,11 +207,13 @@
 .page--req .hd { color: var(--color-ink); }
 .jobtabs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6em; }
 .jobtabs__btn {
-  display: grid; place-items: center; min-height: 46px; font-family: var(--font-head); font-weight: 800; letter-spacing: 0.04em;
+  display: grid; place-items: center; min-height: 46px; font: inherit; font-family: var(--font-body); cursor: pointer; font-weight: 900; font-size: 1.05em; letter-spacing: 0.06em;
   color: var(--color-ink); background: var(--color-base); border: var(--line) solid var(--color-ink); border-radius: var(--radius-s); box-shadow: var(--shadow-tag);
 }
 .jobtabs__btn.is-on { color: var(--color-ink); background: var(--color-accent); }
-.req__job b { display: inline-block; padding: 0.1em 0.6em; font-family: var(--font-head); font-weight: var(--fw-head); color: var(--color-on-dark); background: var(--color-ink); border-radius: var(--radius-s); }
+.jobpanel { display: grid; gap: var(--sp-g); }
+.jobpanel[hidden] { display: none; }
+.req__job b { display: inline-block; padding: 0.1em 0.6em; font-family: var(--font-body); font-weight: 900; letter-spacing: 0.06em; color: var(--color-on-dark); background: var(--color-ink); border-radius: var(--radius-s); }
 .req dd { font-weight: 700; }
 .req__note { font-size: max(var(--fs-min), 0.86em); color: var(--color-main-2); }
 .req__gap { margin-top: 0.6em; }
