@@ -1,9 +1,12 @@
-.tlogo { display: grid; line-height: 1.05; color: var(--color-ink); }
-.tlogo__sm { font-weight: 700; font-size: var(--fs-min); letter-spacing: 0.1em; }
-.tlogo__name { font-family: var(--font-body); font-weight: 900; font-size: 20px; letter-spacing: 0.04em; white-space: nowrap; }
+.lga { display: inline-flex; align-items: center; gap: 5px; line-height: 1; color: var(--color-ink); white-space: nowrap; }
+.lga__ic { flex-shrink: 0; width: 25px; height: 19px; }
+.lga__t { display: grid; gap: 0.32em; }
+.lga__ja { font-family: var(--font-head); font-weight: 400; font-size: 18px; letter-spacing: -0.01em; }
+.lga__en { font-family: var(--font-en); font-weight: 900; font-size: 15px; letter-spacing: 0.24em; color: var(--color-blue-deep); }
 .hb { font-family: var(--font-body); font-weight: 900; }
 
-.page__inner { container-type: inline-size; word-break: keep-all; overflow-wrap: anywhere; }   
+.page__inner { container-type: inline-size; word-break: keep-all; overflow-wrap: anywhere; }
+.cl { display: inline-block; max-width: 100%; }      
 .head { display: grid; justify-items: start; gap: var(--sp-1); }
 .hd { font-family: var(--font-head); font-weight: 400; font-size: var(--fs-head); line-height: var(--lh-head); letter-spacing: var(--ls-head); }
 .tag {
@@ -24,8 +27,8 @@
 .page--dark .hd, .page--dark .big { color: var(--color-on-dark); }
 
 .thin, .band, .railband { overflow: hidden; white-space: nowrap; }
-.thin__track, .band__track, .railband__track { display: flex; width: max-content; animation: flow var(--t, 30s) linear infinite; }
-.thin__track > span, .band__track > span, .railband__track > span { flex: 0 0 auto; padding-right: 0.4em; }
+.thin__track, .band__track { display: flex; width: max-content; animation: flow var(--t, 30s) linear infinite; }
+.thin__track > span, .band__track > span { flex: 0 0 auto; padding-right: 0.4em; }
 @keyframes flow { to { transform: translateX(-50%); } }
 .thin {
   flex-shrink: 0; margin-inline: calc(var(--gutter) * -1); padding: 0.35em 0; font-family: var(--font-en); font-weight: 800; font-size: var(--fs-ui); line-height: 1; letter-spacing: 0.1em;
@@ -223,12 +226,18 @@
 .foot__c { font-family: var(--font-en); font-weight: 700; font-size: var(--fs-min); text-align: center; letter-spacing: 0.12em; }
 
 @media (min-width: 960px) {
-  .tlogo--rail .tlogo__sm { font-size: 15px; }
-  .tlogo--rail .tlogo__name { font-size: 40px; }
+  .lga--rail { gap: 12px; }
+  .lga--rail .lga__ic { width: 66px; height: 50px; }
+  .lga--rail .lga__ja { font-size: 44px; }
   .rail { overflow: hidden; }
   .railband {
-    position: absolute; left: -10%; right: -10%; bottom: 16%; z-index: 0; padding: 0.1em 0; rotate: -6deg; font-family: var(--font-en); font-weight: var(--fw-head); font-size: 64px; line-height: 1.1;
+    position: absolute; left: -16%; right: 0; bottom: 16%; z-index: 0;    padding: 0.1em 0; rotate: -6deg; font-family: var(--font-en); font-weight: var(--fw-head); font-size: 64px; line-height: 1.1;
     color: var(--color-ink); background: var(--color-blue); border-block: 3px solid var(--color-ink);
+  }
+  
+  .railband::before {
+    content: "SATSUKI DOBOKU ● SHAPE THE LAND ● SATSUKI DOBOKU ● SHAPE THE LAND ● SATSUKI DOBOKU ● SHAPE THE LAND ● SATSUKI DOBOKU ● SHAPE THE LAND ● ";
+    display: block; width: max-content; animation: flow 52s linear infinite;
   }
   .rail-logo, .rail-side { position: relative; z-index: 2; }
   .rail-man { position: absolute; z-index: 1; bottom: 2%; left: 8%; width: auto; height: min(42vh, 380px); }
