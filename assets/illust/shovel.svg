@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 200" fill="none" stroke="#0a1a33" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+  <!-- 吊ったスコップ（p6 の遊び） -->
+  <path d="M30 0 L30 30" stroke-width="2"/>
+  <path d="M18 30 Q30 22 42 30 L42 40 L18 40 Z" fill="#ffffff"/>
+  <rect x="26" y="40" width="8" height="92" fill="#f8c988"/>
+  <path d="M12 132 L48 132 L48 168 Q30 196 12 168 Z" fill="#39a2ff"/>
+  <path d="M30 140 L30 176" stroke-width="2.5"/>
+</svg>
