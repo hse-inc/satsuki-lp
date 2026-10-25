@@ -31,7 +31,7 @@
   --fs-ui: max(var(--fs-min), 13px);   
   --fs-input: 16px;                     
   --fs-head: min(13.2cqi, 3.1em);   
-  --fs-sub: 0.88em;              
+  --fs-sub: max(var(--fs-min), 0.88em);              
   --fw-body: 700;                
   --fw-head: 900;
   --ls-body: 0.02em;
