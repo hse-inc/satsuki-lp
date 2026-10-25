@@ -96,15 +96,16 @@
 @keyframes hop { from { translate: 0 0.6em; scale: 1.06 0.94; } to { translate: 0 -0.5em; scale: 0.97 1.04; } }
 .spray--p3 { right: -0.3em; top: -1.05em; font-size: 0.62em; color: var(--color-blue-deep); rotate: -9deg; }
 
+.page--p4 { --sp-g: 0.7em; --sp-p: 0.45em; }
 .payset { display: grid; }
 .pay { display: grid; gap: var(--sp-p); }
 .pay li { display: grid; gap: 0.1em; }
 .pay__who { font-size: var(--fs-sub); font-weight: 700; }
 .pay__v { font-family: var(--font-head); font-weight: 400; font-size: 1.3em; line-height: 1.1; white-space: nowrap; }
-.pay__v em { font-family: var(--font-en); font-weight: 900; font-size: 1.85em; letter-spacing: -0.03em; color: var(--color-accent); }
+.pay__v em { font-family: var(--font-en); font-weight: 900; font-size: 1.7em; letter-spacing: -0.03em; color: var(--color-accent); }
 
 .film {
-  position: relative; flex-shrink: 0; margin-inline: calc(var(--gutter) * -1 - 24px); padding: 16px 0; rotate: -6deg; overflow: hidden;
+  position: relative; flex-shrink: 0; margin: 15px calc(var(--gutter) * -1 - 24px); padding: 16px 0; rotate: -4deg; overflow: hidden;   
   background: var(--color-base); border-block: 3px solid var(--color-base);
 }
 .film::before, .film::after {
@@ -115,7 +116,7 @@
 .film::after { bottom: 4px; }
 .film__track { display: flex; width: max-content; animation: flow var(--t, 30s) linear infinite; }
 .film__set { display: flex; gap: 6px; padding-right: 6px; }
-.film__f { display: block; width: auto; height: clamp(72px, 13.5dvh, 150px); border: 3px solid var(--color-ink); border-radius: 6px; }
+.film__f { display: block; width: auto; height: clamp(58px, 12.5dvh, 150px); border: 3px solid var(--color-ink); border-radius: 6px; }
 
 .page--p5 { --sp-g: 0.6em; --sp-p: 0.5em; }
 .page--p5 .hd { font-size: 10cqi; }
