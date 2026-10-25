@@ -3,6 +3,10 @@
 .lga__t { display: grid; gap: 0.32em; }
 .lga__ja { font-family: var(--font-head); font-weight: 400; font-size: 18px; letter-spacing: -0.01em; }
 .lga__en { font-family: var(--font-en); font-weight: 900; font-size: 15px; letter-spacing: 0.24em; color: var(--color-blue-deep); }
+.lga__ensvg { display: block; width: 100%; height: auto; overflow: visible; }
+.lga__ensvg text { font-family: var(--font-en); font-weight: 900; font-size: 9.4px; fill: var(--color-blue-deep); }
+.site-header .lga__t { gap: 3px; }
+.site-header .lga__ic { width: 30px; height: 23px; }
 .hb { font-family: var(--font-body); font-weight: 900; }
 
 .page__inner { container-type: inline-size; word-break: keep-all; overflow-wrap: anywhere; }
