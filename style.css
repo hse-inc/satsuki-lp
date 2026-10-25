@@ -46,14 +46,9 @@
 .page--p1 { --sp-g: 0.6em; --sp-p: 0.5em; }   
 .hero1 { position: relative; flex-shrink: 0; height: clamp(180px, 32dvh, 320px); margin-inline: calc(var(--gutter) * -1); }
 .hero1__word { position: absolute; inset: 0 0 auto; text-align: center; font-family: var(--font-en); font-weight: 900; font-size: 24cqi; line-height: 0.82; letter-spacing: -0.04em; color: var(--color-ink); }   
-.hero1__men { position: absolute; inset: 12% 0 22%; z-index: 2; }
-.hero1__man { position: absolute; bottom: -6%; height: 100%; width: auto; }
-.hero1__man--l { left: 16%; }
-.hero1__man--r { right: 14%; }
-.hero1__mach { position: absolute; left: -16%; bottom: -4%; z-index: -1; height: 62%; width: auto; scale: -1 1; animation: dig 1.6s ease-in-out infinite alternate; transform-origin: 70% 100%; }
-@keyframes dig { from { rotate: 0deg; } to { rotate: -4deg; translate: 0 -3px; } }
+.hero1__men { position: absolute; inset: -6% 0 15%; z-index: 2; }
+.hero1__man { position: absolute; left: 0; right: 0; bottom: 0; height: 112%; width: auto; margin-inline: auto; }   
 .page.is-active .hero1__man { animation: jump-in 0.7s var(--ease-pop) both, fuwa var(--dur-float) ease-in-out 0.8s infinite alternate; }
-.page.is-active .hero1__man--r { animation-delay: 0.12s, 1.6s; }
 @keyframes jump-in { from { translate: 0 60%; scale: 0.6; opacity: 0; } to { translate: 0 0; scale: 1; opacity: 1; } }
 .hero1__ttl {
   position: absolute; left: 0; right: 0; bottom: 0; height: 24%; z-index: 3; display: grid; place-items: center; padding-top: 0.15em;
