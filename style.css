@@ -119,10 +119,8 @@
 
 .page--p5 { --sp-g: 0.6em; --sp-p: 0.5em; }
 .page--p5 .hd { font-size: 10.6cqi; }
-.band { position: relative; flex-shrink: 0; overflow: visible; clip-path: inset(-3em 0 -0.2em 0); margin-inline: calc(var(--gutter) * -1); padding: 0.06em 0 0; border-block: 4px solid var(--color-blue); font-family: var(--font-en); font-weight: 900; font-size: 2.7em; line-height: 1.02; letter-spacing: -0.03em; color: var(--color-on-dark); }
+.band { position: relative; flex-shrink: 0; margin-inline: calc(var(--gutter) * -1); padding: 0.06em 0 0; border-block: 4px solid var(--color-blue); font-family: var(--font-en); font-weight: 900; font-size: 2.7em; line-height: 1.02; letter-spacing: -0.03em; color: var(--color-on-dark); }
 .spray--band { right: 4%; top: 0.08em; font-size: 0.42em; color: var(--color-accent); rotate: -10deg; }
-.runner { position: absolute; z-index: 2; bottom: -0.04em; left: 0; width: auto; height: 1.08em; animation: run-across 5.5s linear infinite, bob 0.32s ease-in-out infinite alternate; }
-@keyframes run-across { from { translate: -120% 0; } to { translate: 105vw 0; } }
 @keyframes bob { from { rotate: -4deg; margin-bottom: 0; } to { rotate: 3deg; margin-bottom: 0.08em; } }
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.45em; }
 .card {
