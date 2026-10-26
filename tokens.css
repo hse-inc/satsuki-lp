@@ -57,18 +57,24 @@
   --shadow-column: 0 0 24px 0 var(--color-shadow);
 
   
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-line: cubic-bezier(0.19, 1, 0.22, 1);   
+  --ease-out: cubic-bezier(0.19, 1, 0.22, 1);        
+  --ease-line: cubic-bezier(0.19, 1, 0.22, 1);       
+  --ease-snappy: cubic-bezier(0.42, 0, 0.08, 1);     
+  --ease-hard: cubic-bezier(0.08, 0.82, 0.17, 1);    
+  --ease-split: cubic-bezier(0.87, 0, 0.13, 1);      
+  --ease-spray: cubic-bezier(1, 0.26, 0, 1);         
   --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --rise: 26px;                  
-  --dur-in: 560ms;
+  --rise: 48px;                  
+  --dur-in: 850ms;               
   --dur-hover: 300ms;
-  --dur-paint: 1200ms;           
-  --delay-paint: 400ms;          
+  --dur-paint: 700ms;            
+  --dur-paint-hover: 450ms;
+  --delay-paint: 300ms;          
   --dur-float: 3.6s;             
   --dur-swing: 3.2s;             
-  --pxs-band: 60;                
-  --pxs-thin: 40;                
+  --pxs-band: 220;               
+  --pxs-thin: 110;               
+  --pxs-film: 90;                
 }
 
 @media (max-height: 600px) { :root { --pad-y: 0.7em; } }

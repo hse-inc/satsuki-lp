@@ -4,6 +4,7 @@
  * 0.7 見出しを1文字ずつ落とす・p3 の数字を数え上げる
  * 1. 流れる帯（細い帯・特大の帯・フィルムの帯。PC の帯は CSS の疑似要素で 52秒）：1周の秒数を「半分の長さ ÷ px/秒」で決める（tokens.css の --pxs-band／--pxs-thin。AGENTS.md 2.8）
  * 2. ペイント（p3・p6 の見出し・p5 の帯）：PC はカーソルを重ねたときにも書き直す（Canva「カーソルを重ねた時にもペイントがかかる動き」）
+ * 3. 参考の動きに寄せる（りょうさん 10/26）：読み込みの幕を取り除く／フィルムを2本にして交差／面の色が変わるページに耳の形の幕
  */
 (() => {
   const r1 = document.getElementById('requirements');
@@ -58,13 +59,24 @@
     });
   });
 
+  document.querySelectorAll('.film').forEach((film) => {
+    const box = document.createElement('div');
+    box.className = 'films page__label';
+    box.setAttribute('aria-hidden', 'true');
+    box.setAttribute('data-bleed', '');
+    film.replaceWith(box);
+    const rev = film.cloneNode(true);
+    rev.classList.add('film--rev');
+    box.append(rev, film);
+  });
+
   const root = getComputedStyle(document.documentElement);
   const pxs = (name, fallback) => Number(root.getPropertyValue(name)) || fallback;
   const tracks = [...document.querySelectorAll('.thin__track, .band__track, .film__track')];
   const fit = () => tracks.forEach((track) => {
     const half = track.scrollWidth / 2;
     if (half < 50) return;
-    const speed = track.classList.contains('thin__track') ? pxs('--pxs-thin', 40) : pxs('--pxs-band', 60);
+    const speed = track.classList.contains('thin__track') ? pxs('--pxs-thin', 110) : track.classList.contains('film__track') ? pxs('--pxs-film', 90) : pxs('--pxs-band', 220);
     track.style.setProperty('--t', `${(half / speed).toFixed(1)}s`);
   });
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(fit);
@@ -81,4 +93,32 @@
       });
     });
   }
+
+  const intro = document.querySelector('.intro');
+  if (intro) setTimeout(() => intro.remove(), 1600);
+
+  const allPages = [...document.querySelectorAll('#slider > .page')];
+  const ears = '<svg class="wipe__ears" viewBox="0 0 200 44" preserveAspectRatio="none"><path class="wipe__fill" d="M0 0 H200 V40 L178 40 L152 8 Q145 2 138 8 L112 40 L88 40 L62 8 Q55 2 48 8 L22 40 L0 40 Z"/><path class="wipe__band" d="M41.5 16 L68.5 16 L73.4 22 L36.6 22 Z M31.8 28 L78.3 28 L83.1 34 L26.9 34 Z M131.5 16 L158.5 16 L163.4 22 L126.6 22 Z M121.8 28 L168.3 28 L173.1 34 L116.9 34 Z"/></svg>';
+  const wiped = allPages.filter((p, k) => {
+    if (k < 2 || p.id === 'p7') return false;
+    const c = getComputedStyle(p).backgroundColor, prev = getComputedStyle(allPages[k - 1]).backgroundColor;
+    if (c === prev) return false;
+    const box = document.createElement('div');
+    box.className = 'wipe-box page__label';
+    box.setAttribute('aria-hidden', 'true');
+    box.setAttribute('data-bleed', '');
+    box.innerHTML = `<div class="wipe">${ears}</div>`;
+    box.style.setProperty('--wipe-c', prev);
+    p.prepend(box);
+    return true;
+  });
+  let now = -1, armTimer = 0;
+  const arm = () => wiped.forEach((p) => p.classList.toggle('is-armed', allPages.indexOf(p) > now));
+  document.addEventListener('pagechange', (e) => {
+    now = allPages.indexOf(e.detail.page);
+    e.detail.page.classList.remove('is-armed');
+    clearTimeout(armTimer);
+    armTimer = setTimeout(arm, 700);
+  });
+  arm();
 })();
