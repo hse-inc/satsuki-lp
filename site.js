@@ -107,16 +107,16 @@
   if (intro) setTimeout(() => intro.remove(), 1600);
 
   const allPages = [...document.querySelectorAll('#slider > .page')];
-  const ears = '<svg class="wipe__ears" viewBox="0 0 200 44" preserveAspectRatio="none"><path class="wipe__fill" fill-rule="evenodd" d="M0 0 H200 V40 H0 Z M44 1.69 L44 12 L52 12 L52 1.69 A12 12 0 0 1 52 24.31 L52 40 L44 40 L44 24.31 A12 12 0 0 1 44 1.69 Z M128 5 Q128 3 130 3 L170 3 Q172 3 172 5 L172 13 Q172 15 170 15 L155 15 L155 40 L145 40 L145 15 L130 15 Q128 15 128 13 Z"/></svg>';
+  const wrench = 'M46 43.31 A12 12 0 0 1 46 20.69 L46 30 L54 30 L54 20.69 A12 12 0 0 1 54 43.31 L54 70 A4 4 0 0 1 46 70 Z';
   const wiped = allPages.filter((p, k) => {
-    if (k < 2 || p.id === 'p7' || p.querySelector('.films')) return false;
+    if (k < 2 || p.id === 'p7') return false;
     const c = getComputedStyle(p).backgroundColor, prev = getComputedStyle(allPages[k - 1]).backgroundColor;
     if (c === prev) return false;
     const box = document.createElement('div');
     box.className = 'wipe-box page__label';
     box.setAttribute('aria-hidden', 'true');
     box.setAttribute('data-bleed', '');
-    box.innerHTML = `<div class="wipe">${ears}</div>`;
+    box.innerHTML = `<svg class="wipe" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><mask id="wipe-m${k}"><rect x="-100" y="-100" width="300" height="300" fill="white"/><path class="wipe__tool" d="${wrench}" fill="black"/></mask><rect class="wipe__fill" x="-100" y="-100" width="300" height="300" mask="url(#wipe-m${k})"/></svg>`;
     box.style.setProperty('--wipe-c', prev);
     p.prepend(box);
     return true;
