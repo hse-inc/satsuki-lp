@@ -267,11 +267,15 @@
 .giant {
   margin-top: 0.15em; font-family: var(--font-en); font-weight: 900; font-size: 22cqi; line-height: 0.9; letter-spacing: -0.04em; text-align: center;
   
-  color: transparent; background: url("assets/scene_31.jpg?v=20261025a") 0% 92% / 130% auto; -webkit-background-clip: text; background-clip: text;
+  color: transparent; background: url("assets/illust/s_road.webp?v=20261026t") 0% 30% / 150% auto; -webkit-background-clip: text; background-clip: text;   
   animation: pan-x 8s ease-in-out infinite alternate;
   -webkit-mask: radial-gradient(circle at 50% 100%, transparent 0.12em, var(--color-ink) 0.13em) 50% 0 / 0.5em 100%;
   mask: radial-gradient(circle at 50% 100%, transparent 0.12em, var(--color-ink) 0.13em) 50% 0 / 0.5em 100%;
 }
+
+.page--company .page__inner { min-height: 100dvh; }
+.page--company .giant { margin-top: auto; }
+.page--company .req--company { margin-bottom: auto; }
 .req--company { padding: 0.2em 1em; color: var(--color-ink); background: var(--color-base); border-radius: var(--radius-m); }
 .req--company .req__row:last-child { border-bottom: 0; }
 
