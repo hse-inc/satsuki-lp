@@ -45,6 +45,15 @@
 .hd .ch { position: relative; }
 .page.is-active .hd .ch { animation: ch-rise 0.85s var(--ease-hard) both; animation-delay: calc(0.1s + var(--i) * 0.03s); }   
 @keyframes ch-rise { from { top: 0.9em; opacity: 0; } 30% { opacity: 1; } to { top: 0; opacity: 1; } }
+
+.page--p4.is-active .hd .ch { animation-name: ch-from-r; }
+.page--p5.is-active .hd .ch { animation-name: ch-fall; }
+.page--p6.is-active .hd .ch { animation-name: ch-blur; animation-duration: 1s; }
+.page--p7.is-active .hd .ch { animation-name: ch-from-l; animation-delay: calc(1.05s + var(--i) * 0.05s); }   
+@keyframes ch-from-r { from { left: 3em; opacity: 0; } 25% { opacity: 1; } to { left: 0; opacity: 1; } }
+@keyframes ch-from-l { from { left: -3em; opacity: 0; } 25% { opacity: 1; } to { left: 0; opacity: 1; } }
+@keyframes ch-fall { from { top: -1.1em; opacity: 0; } 30% { opacity: 1; } to { top: 0; opacity: 1; } }
+@keyframes ch-blur { from { top: -0.25em; opacity: 0; filter: blur(12px); } to { top: 0; opacity: 1; filter: blur(0); } }
 .tag {
   display: inline-block; padding: 0.3em 0.7em 0.25em; font-family: var(--font-en); font-weight: 800; font-size: var(--fs-ui); line-height: 1; letter-spacing: 0.12em;
   color: var(--color-ink); background: var(--color-accent); border: var(--line) solid var(--color-ink); border-radius: var(--radius-s); box-shadow: var(--shadow-tag);
@@ -331,17 +340,47 @@
 .wipe-box { position: absolute; inset: 0; z-index: 6; overflow: hidden; pointer-events: none; }
 .wipe { position: absolute; left: 0; right: 0; top: 0; display: block; width: 100%; height: 100dvh; visibility: hidden; }
 .wipe__fill { fill: var(--wipe-c); }
-.wipe__tool { transform-box: view-box; transform-origin: 50px 47px; transform: scale(16); }
+.wipe__tool { transform-box: view-box; transform-origin: 50px 50px; transform: scale(18); }
 .page.is-armed .wipe { visibility: visible; }
 .page.is-armed .wipe__tool { transform: scale(0); }
-.page:not(.is-armed) .wipe { animation: wipe-off 1.15s linear both; }
-.page:not(.is-armed) .wipe__tool { animation: tool-open 1.15s both; }
+.page:not(.is-armed) .wipe { animation: wipe-off 1.2s linear both; }
+.page:not(.is-armed) .wipe__tool--helmet { animation: tool-pop 1.15s both; }
+.page:not(.is-armed) .wipe__tool--wrench { animation: tool-spin 1.15s both; }
+.page:not(.is-armed) .wipe__tool--hammer { animation: tool-swing 1.2s both; }
+.page:not(.is-armed) .wipe__tool--shovel { animation: tool-rise 1.15s both; }
+.page:not(.is-armed) .wipe__tool--gear { animation: tool-gear 1.2s both; }
 @keyframes wipe-off { 0%, 99% { visibility: visible; } 100% { visibility: hidden; } }
-@keyframes tool-open {
-  0% { transform: scale(0); animation-timing-function: var(--ease-out); }
-  28% { transform: scale(1); }
+
+@keyframes tool-pop {   
+  0% { transform: scale(0); animation-timing-function: var(--ease-pop); }
+  30% { transform: scale(1); }
   42% { transform: scale(1); animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0); }
-  100% { transform: scale(16); }
+  100% { transform: scale(18); }
+}
+@keyframes tool-spin {   
+  0% { transform: rotate(-120deg) scale(0); animation-timing-function: var(--ease-out); }
+  30% { transform: rotate(0deg) scale(1); }
+  42% { transform: rotate(0deg) scale(1); animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0); }
+  100% { transform: rotate(180deg) scale(18); }
+}
+@keyframes tool-swing {   
+  0% { transform: rotate(-80deg) scale(1); animation-timing-function: cubic-bezier(0.6, 0, 0.9, 0.6); }
+  22% { transform: rotate(12deg) scale(1); animation-timing-function: var(--ease-out); }
+  34% { transform: rotate(0deg) scale(1); }
+  44% { transform: rotate(0deg) scale(1); animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0); }
+  100% { transform: rotate(0deg) scale(18); }
+}
+@keyframes tool-rise {   
+  0% { transform: translateY(70px) scale(1); animation-timing-function: var(--ease-snappy); }
+  32% { transform: translateY(0) scale(1); }
+  42% { transform: translateY(0) scale(1); animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0); }
+  100% { transform: translateY(0) scale(18); }
+}
+@keyframes tool-gear {   
+  0% { transform: rotate(0deg) scale(0); animation-timing-function: var(--ease-out); }
+  30% { transform: rotate(120deg) scale(1); animation-timing-function: linear; }
+  42% { transform: rotate(170deg) scale(1); animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0); }
+  100% { transform: rotate(420deg) scale(18); }
 }
 
 @media (min-width: 960px) {

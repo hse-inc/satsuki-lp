@@ -107,7 +107,13 @@
   if (intro) setTimeout(() => intro.remove(), 1600);
 
   const allPages = [...document.querySelectorAll('#slider > .page')];
-  const wrench = 'M46 43.31 A12 12 0 0 1 46 20.69 L46 30 L54 30 L54 20.69 A12 12 0 0 1 54 43.31 L54 70 A4 4 0 0 1 46 70 Z';
+  const tools = {
+    p3: { cls: 'wipe__tool wipe__tool--helmet', d: 'M26 58 Q26 30 50 28 Q74 30 74 58 Z M20 58 H80 V65 Q80 67 78 67 H22 Q20 67 20 65 Z' },
+    p4: { cls: 'wipe__tool wipe__tool--wrench', d: 'M46 43.31 A12 12 0 0 1 46 20.69 L46 30 L54 30 L54 20.69 A12 12 0 0 1 54 43.31 L54 70 A4 4 0 0 1 46 70 Z' },
+    p6: { cls: 'wipe__tool wipe__tool--hammer', d: 'M30 30 H70 Q72 30 72 32 V40 Q72 42 70 42 H55 V72 Q55 74 53 74 H47 Q45 74 45 72 V42 H30 Q28 42 28 40 V32 Q28 30 30 30 Z' },
+    company: { cls: 'wipe__tool wipe__tool--shovel', d: 'M42 18 H58 V24 H53 V52 H60 V64 Q60 76 50 80 Q40 76 40 64 V52 H47 V24 H42 Z' },
+    requirements: { cls: 'wipe__tool wipe__tool--gear', d: (() => { let d = ''; for (let t = 0; t < 8; t++) { const a = (t / 8) * Math.PI * 2; [[-0.2, 15], [-0.12, 21], [0.12, 21], [0.2, 15]].forEach(([o, r], n) => { const x = 50 + r * Math.cos(a + o), y = 50 + r * Math.sin(a + o); d += `${t === 0 && n === 0 ? 'M' : 'L'}${x.toFixed(2)} ${y.toFixed(2)} `; }); } return `${d}Z`; })() },
+  };
   const wiped = allPages.filter((p, k) => {
     if (k < 2 || p.id === 'p7') return false;
     const c = getComputedStyle(p).backgroundColor, prev = getComputedStyle(allPages[k - 1]).backgroundColor;
@@ -116,7 +122,8 @@
     box.className = 'wipe-box page__label';
     box.setAttribute('aria-hidden', 'true');
     box.setAttribute('data-bleed', '');
-    box.innerHTML = `<svg class="wipe" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><mask id="wipe-m${k}"><rect x="-100" y="-100" width="300" height="300" fill="white"/><path class="wipe__tool" d="${wrench}" fill="black"/></mask><rect class="wipe__fill" x="-100" y="-100" width="300" height="300" mask="url(#wipe-m${k})"/></svg>`;
+    const tool = tools[p.id] || tools.p4;
+    box.innerHTML = `<svg class="wipe" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><mask id="wipe-m${k}"><rect x="-100" y="-100" width="300" height="300" fill="white"/><path class="${tool.cls}" d="${tool.d}" fill="black"/></mask><rect class="wipe__fill" x="-100" y="-100" width="300" height="300" mask="url(#wipe-m${k})"/></svg>`;
     box.style.setProperty('--wipe-c', prev);
     p.prepend(box);
     return true;
