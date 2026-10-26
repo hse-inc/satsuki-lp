@@ -1,6 +1,7 @@
 /* 案件だけの動き：さつき土木有限会社（骨格の swipe.js は直さない）
  * 0. 募集要項の職種タブ：HTML は版ごとの section（文言照合のため）。開いたら現場作業員版を施工管理版のページの中へ移し、普通のタブで切り替える
  * 0.5 メニュー（Canva「メニューがふわっと広がる感じ」）
+ * 0.7 見出しを1文字ずつ落とす・p3 の数字を数え上げる
  * 1. 流れる帯（細い帯・特大の帯・フィルムの帯。PC の帯は CSS の疑似要素で 52秒）：1周の秒数を「半分の長さ ÷ px/秒」で決める（tokens.css の --pxs-band／--pxs-thin。AGENTS.md 2.8）
  * 2. ペイント（p3・p6 の見出し・p5 の帯）：PC はカーソルを重ねたときにも書き直す（Canva「カーソルを重ねた時にもペイントがかかる動き」）
  */
@@ -37,6 +38,25 @@
     gmenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
   }
+
+  document.querySelectorAll('.hd').forEach((hd) => {
+    let i = 0;
+    const tw = document.createTreeWalker(hd, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    for (let n = tw.nextNode(); n; n = tw.nextNode()) if (n.data.trim() && !n.parentElement.closest('.spray, .vh')) nodes.push(n);
+    nodes.forEach((n) => {
+      const frag = document.createDocumentFragment();
+      [...n.data].forEach((c) => { const sp = document.createElement('span'); sp.className = 'ch'; sp.style.setProperty('--i', i++); sp.textContent = c; frag.appendChild(sp); });
+      n.replaceWith(frag);
+    });
+  });
+  document.addEventListener('pagechange', (e) => {
+    e.detail.page.querySelectorAll('.cnt').forEach((el) => {
+      const to = Number(el.dataset.to), t0 = performance.now(), dur = 900;
+      const tick = (t) => { const k = Math.min(1, (t - t0) / dur); el.textContent = String(Math.round(to * (1 - Math.pow(1 - k, 3)))); if (k < 1) requestAnimationFrame(tick); };
+      el.textContent = '0'; requestAnimationFrame(tick);
+    });
+  });
 
   const root = getComputedStyle(document.documentElement);
   const pxs = (name, fallback) => Number(root.getPropertyValue(name)) || fallback;
