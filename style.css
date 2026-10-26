@@ -98,22 +98,27 @@
 @keyframes pan-x { from { background-position-x: 0%; } to { background-position-x: 100%; } }   
 
 .page--p1 { --sp-g: 0.6em; --sp-p: 0.5em; }   
-@media (max-height: 600px) { .page--p1 { --sp-g: 0.45em; } .page--p1 .hero1 { height: 27dvh; } }   
-.hero1 { position: relative; flex-shrink: 0; height: clamp(168px, 31dvh, 400px); margin-inline: calc(var(--gutter) * -1); }
+@media (max-height: 600px) { .page--p1 { --sp-g: 0.45em; } }   
+.hero1 { --ttl-fs: min(9.4cqi, 2.2em); --slab-h: calc(var(--ttl-fs) * 1.55); position: relative; flex-shrink: 0; height: clamp(240px, 44dvh, 440px); margin-inline: calc(var(--gutter) * -1); }   
 .hero1__word { position: absolute; inset: 0 0 auto; text-align: center; font-family: var(--font-en); font-weight: 900; font-size: 24cqi; line-height: 0.82; letter-spacing: -0.04em; color: var(--color-ink); }   
-.hero1__men { position: absolute; inset: 15% 0 13%; z-index: 2; }   
-.hero1__man { position: absolute; bottom: 0; height: 100%; width: auto; }   
-.hero1__man--l { right: 50%; margin-right: -6px; }
-.hero1__man--r { left: 50%; margin-left: -6px; }
-.page.is-active .hero1__man--r { animation-delay: 0.12s, 1.6s; }
+.hero1__men { position: absolute; inset: 15% 0 calc(var(--slab-h) - 3px); z-index: 2; }   
+.hero1__man { position: absolute; left: 0; right: 0; bottom: 0; height: 100%; width: auto; margin-inline: auto; }   
 .page.is-active .hero1__man { animation: jump-in 0.7s var(--ease-pop) both, fuwa var(--dur-float) ease-in-out 0.8s infinite alternate; }
 @keyframes jump-in { from { translate: 0 60%; scale: 0.6; opacity: 0; } to { translate: 0 0; scale: 1; opacity: 1; } }
+
 .hero1__ttl {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 15%; z-index: 3; display: grid; place-items: center; padding-top: 0.15em;
-  font-family: var(--font-head); font-weight: 400; font-size: min(10.4cqi, 2.4em); line-height: 1; letter-spacing: -0.02em; color: var(--color-on-dark);
-  background: var(--color-ink); border-radius: 50% 50% 0 0 / 40% 40% 0 0;
+  position: absolute; left: 0; right: 0; bottom: 0; height: 1.55em; z-index: 3; display: grid; place-items: center; padding-top: 0.12em;   
+  font-family: var(--font-head); font-weight: 400; font-size: var(--ttl-fs); line-height: 1; letter-spacing: -0.02em; color: var(--color-on-dark);
+  background: linear-gradient(var(--color-accent), var(--color-accent)) 0 0 / 100% 0.16em no-repeat, var(--color-ink);
+  clip-path: polygon(7% 0, 93% 0, 100% 100%, 0 100%);
 }
 .says { display: grid; gap: var(--sp-1); }
+
+.says--side { position: absolute; inset: 34% 0 auto; z-index: 3; display: flex; justify-content: space-between; align-items: flex-start; padding-inline: 4px; pointer-events: none; }
+.says--side .say { max-width: 38%; padding: 0.4em 0.55em; font-size: max(var(--fs-min), 0.78em); line-height: 1.35; word-break: keep-all; }
+.says--side .say--r { margin-top: 2.6em; }
+.says--side .say--l::after { left: auto; right: -9px; top: 40%; border-width: var(--line) var(--line) 0 0; }
+.says--side .say--r::after { right: auto; left: -9px; top: 40%; border-width: 0 0 var(--line) var(--line); }
 .say {
   position: relative; max-width: 90%; padding: 0.4em 0.75em; font-size: var(--fs-sub); font-weight: 700; line-height: 1.4;
   background: var(--color-base); border: var(--line) solid var(--color-ink); border-radius: 14px; box-shadow: var(--shadow-tag);
@@ -173,12 +178,10 @@
 .film::before { top: 4px; }
 .film::after { bottom: 4px; }
 .film__track { display: flex; width: max-content; animation: flow var(--t, 30s) linear infinite; }
-.page.is-active .film { animation: film-in 0.85s var(--ease-out) both; }   
+.film { transform: translateX(calc(var(--scrub, 0) * 70%)); }   
 .film--rev { rotate: 6deg; filter: brightness(0.82); }   
 .film--rev .film__track { animation-direction: reverse; }
-.page.is-active .film--rev { animation: film-in-l 0.85s var(--ease-out) 0.08s both; }
-@keyframes film-in { from { translate: 110% 0; } to { translate: 0 0; } }
-@keyframes film-in-l { from { translate: -110% 0; } to { translate: 0 0; } }
+.films > .film--rev { transform: translateX(calc(var(--scrub, 0) * -70%)); }
 @media (max-height: 600px) { .films { margin-block: 0; } .film--rev { display: none; } }   
 .film__set { display: flex; gap: 6px; padding-right: 6px; }
 .film__f { display: block; width: auto; height: clamp(58px, 12.5dvh, 150px); border: 3px solid var(--color-ink); border-radius: 6px; }
@@ -233,7 +236,6 @@
 .earsrise__scene { position: absolute; inset: 0; background: url("assets/scene_22.jpg?v=20261025a") 50% 40% / cover; }
 .earsrise__head { position: absolute; left: -10%; right: -10%; bottom: 0; width: 120%; height: 100%; transform-origin: 50% 100%; }
 .earsrise__fill { fill: var(--color-blue); }
-.earsrise__band { fill: var(--color-base); }
 .page--p7.is-active .earsrise { animation: earsrise-show 1.25s linear both; }
 .page--p7.is-active .earsrise__head { animation: earsrise-grow 1.15s cubic-bezier(0.55, 0, 0.25, 1) both; }
 @keyframes earsrise-show { 0% { visibility: visible; opacity: 1; } 85% { visibility: visible; opacity: 1; } 100% { visibility: hidden; opacity: 0; } }
@@ -309,9 +311,9 @@
 .intro__mark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: min(2vw, 12px); animation: intro-out 0.75s var(--ease-split) 0.75s both; }
 @keyframes intro-out { to { translate: 0 -25%; opacity: 0; } }
 .intro__word {
-  font-family: var(--font-en); font-weight: 900; font-size: min(19vw, 150px); line-height: 0.9; letter-spacing: -0.04em;
-  color: transparent; background: url("assets/scene_31.jpg?v=20261025a") 0% 92% / 130% auto; -webkit-background-clip: text; background-clip: text;
-  animation: intro-word 0.6s var(--ease-out) 0.1s both, pan-x 8s ease-in-out infinite alternate;
+  font-family: var(--font-en); font-weight: 900; font-size: min(15.5vw, 150px); line-height: 0.9; letter-spacing: -0.04em;
+  color: var(--color-blue);   
+  animation: intro-word 0.6s var(--ease-out) 0.1s both;
 }
 @keyframes intro-word { from { translate: 0 30%; opacity: 0; } }
 .intro__cone { flex-shrink: 0; width: min(10vw, 64px); height: auto; animation: intro-cone 0.75s var(--ease-snappy) both; }
@@ -327,7 +329,6 @@
 .page.is-armed .wipe { visibility: visible; translate: 0 0; transition: none; }
 .wipe__ears { position: absolute; left: 0; top: calc(100% - 1px); display: block; width: 100%; height: auto; aspect-ratio: 200 / 44; }
 .wipe__fill { fill: var(--wipe-c); }
-.wipe__band { fill: var(--color-base); }
 
 @media (min-width: 960px) {
   .lga--rail { gap: 12px; }
