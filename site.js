@@ -11,7 +11,7 @@
     const panel = (job, from) => {
       const d = document.createElement('div');
       d.className = 'jobpanel'; d.dataset.job = job; d.setAttribute('role', 'tabpanel');
-      from.querySelectorAll(':scope .page__inner > .req__job, :scope .page__inner > .req').forEach((el) => d.appendChild(el));
+      from.querySelectorAll(':scope .page__inner > .req').forEach((el) => d.appendChild(el));
       return d;
     };
     const p1 = panel('1', r1), p2 = panel('2', r2);

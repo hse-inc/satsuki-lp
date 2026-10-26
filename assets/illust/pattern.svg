@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <!-- 背景の柄（マスク用。色は CSS で付ける）：ヘルメット・パイロン・スコップ・点を斜めに並べた繰り返し -->
+  <g fill="#000">
+    <path d="M14 38 Q15 18 32 17 Q49 18 50 38 Z"/><rect x="9" y="37" width="46" height="6" rx="3"/>
+    <path d="M112 62 L126 98 L98 98 Z"/><rect x="94" y="97" width="36" height="5" rx="2"/>
+    <g transform="rotate(-28 40 122)"><rect x="37" y="92" width="6" height="30" rx="2"/><path d="M30 120 L50 120 L50 136 Q40 148 30 136 Z"/></g>
+    <circle cx="118" cy="24" r="4"/><circle cx="76" cy="62" r="3"/><circle cx="140" cy="138" r="3.5"/><circle cx="72" cy="146" r="2.5"/>
+  </g>
+</svg>

@@ -44,8 +44,8 @@
   --header-h: 56px;
   --gutter: 20px;                
   --sp-1: 0.4em;                 
-  --sp-p: 0.7em;                 
-  --sp-g: 1em;                   
+  --sp-p: max(0.7em, 1.6dvh);   
+  --sp-g: max(1em, 3.4dvh);      
   --pad-y: 1.1em;                
   --next-h: 0px;                 
   --line: 2px;                   
