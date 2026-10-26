@@ -233,7 +233,7 @@
 
 .page--p7 { --sp-g: 0.55em; --sp-p: 0.5em; }
 .ears { position: relative; flex-shrink: 0; height: clamp(44px, 12dvh, 150px); margin-inline: calc(var(--gutter) * -1); clip-path: inset(calc(var(--pad-y) * -1 - 2px) 0 0 0); }   
-.ears__scene { position: absolute; left: 0; right: 0; bottom: 0; top: calc(var(--pad-y) * -1); background: url("assets/illust/s_river.webp?v=20261026v") 50% 40% / cover; }
+.ears__scene { position: absolute; left: 0; right: 0; bottom: 0; top: calc(var(--pad-y) * -1); background: url("assets/illust/s_road.webp?v=20261026w") 50% 45% / cover; }
 .ears__ear { position: absolute; bottom: -1px; height: 100%; fill: var(--color-blue); transform-origin: 50% 100%; scale: 0.2 0; transition: scale 0.8s var(--ease-pop); }
 .ears__ear--l { left: -4%; width: 42%; rotate: -10deg; }
 .ears__ear--c { left: 33%; width: 34%; height: 78%; }
@@ -245,7 +245,7 @@
 .page.is-active .ears__ear { scale: 1 1; }
 
 .earsrise { position: absolute; inset: 0; z-index: 5; pointer-events: none; visibility: hidden; }
-.earsrise__scene { position: absolute; inset: 0; background: url("assets/illust/s_river.webp?v=20261026v") 50% 40% / cover; }
+.earsrise__scene { position: absolute; inset: 0; background: url("assets/illust/s_road.webp?v=20261026w") 50% 45% / cover; }
 .earsrise__head { position: absolute; left: -10%; right: -10%; bottom: 0; width: 120%; height: 100%; transform-origin: 50% 100%; }
 .earsrise__fill { fill: var(--color-blue); }
 .page--p7.is-active .earsrise { animation: earsrise-show 1.25s linear both; }
