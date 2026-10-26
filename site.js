@@ -1,7 +1,8 @@
 /* 案件だけの動き：さつき土木有限会社（骨格の swipe.js は直さない）
  * 0. 募集要項の職種タブ：HTML は版ごとの section（文言照合のため）。開いたら現場作業員版を施工管理版のページの中へ移し、普通のタブで切り替える
+ * 0.5 メニュー（Canva「メニューがふわっと広がる感じ」）
  * 1. 流れる帯（細い帯・特大の帯・フィルムの帯。PC の帯は CSS の疑似要素で 52秒）：1周の秒数を「半分の長さ ÷ px/秒」で決める（tokens.css の --pxs-band／--pxs-thin。AGENTS.md 2.8）
- * 2. ペイント（p6 の見出し）：PC はカーソルを重ねたときにも書き直す（Canva 8）
+ * 2. ペイント（p3・p6 の見出し・p5 の帯）：PC はカーソルを重ねたときにも書き直す（Canva「カーソルを重ねた時にもペイントがかかる動き」）
  */
 (() => {
   const r1 = document.getElementById('requirements');
@@ -24,6 +25,19 @@
     }));
   }
 
+  const mbtn = document.querySelector('.menu-btn'), gmenu = document.getElementById('gmenu');
+  if (mbtn && gmenu) {
+    const setOpen = (open) => {
+      gmenu.classList.toggle('is-open', open);
+      gmenu.setAttribute('aria-hidden', String(!open));
+      mbtn.setAttribute('aria-expanded', String(open));
+      mbtn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    };
+    mbtn.addEventListener('click', () => setOpen(!gmenu.classList.contains('is-open')));
+    gmenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+  }
+
   const root = getComputedStyle(document.documentElement);
   const pxs = (name, fallback) => Number(root.getPropertyValue(name)) || fallback;
   const tracks = [...document.querySelectorAll('.thin__track, .band__track, .film__track')];
@@ -38,7 +52,7 @@
   window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(fit, 200); });
 
   if (matchMedia('(hover: hover)').matches) {
-    document.querySelectorAll('.hd--paint').forEach((hd) => {
+    document.querySelectorAll('.hd--paint, .band').forEach((hd) => {
       const spray = hd.querySelector('.spray');
       hd.addEventListener('mouseenter', () => {
         spray.classList.remove('is-repaint');
