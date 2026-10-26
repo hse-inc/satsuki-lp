@@ -4,7 +4,7 @@
  * 0.7 見出しを1文字ずつ落とす・p3 の数字を数え上げる
  * 1. 流れる帯（細い帯・特大の帯・フィルムの帯。PC の帯は CSS の疑似要素で 52秒）：1周の秒数を「半分の長さ ÷ px/秒」で決める（tokens.css の --pxs-band／--pxs-thin。AGENTS.md 2.8）
  * 2. ペイント（p3・p6 の見出し・p5 の帯）：PC はカーソルを重ねたときにも書き直す（Canva「カーソルを重ねた時にもペイントがかかる動き」）
- * 3. 参考の動きに寄せる（りょうさん 10/26）：読み込みの幕を取り除く／フィルムを2本にして交差／面の色が変わるページに耳の形の幕
+ * 3. 参考の動きに寄せる（りょうさん 10/26）：読み込みの幕を取り除く／フィルムを2本にして交差／面の色が変わるページに工具の形の幕
  */
 (() => {
   const r1 = document.getElementById('requirements');
@@ -94,17 +94,8 @@
     });
   }
 
-  const slider = document.getElementById('slider');
-  const filmPages = [...document.querySelectorAll('.films')].map((box) => [box, box.closest('.page')]);
-  if (slider && filmPages.length) {
-    let ft = false;
-    const scrub = () => { ft = false; filmPages.forEach(([box, pg]) => box.style.setProperty('--scrub', Math.max(-1, Math.min(1, (pg.offsetTop - slider.scrollTop) / slider.clientHeight)).toFixed(3))); };
-    slider.addEventListener('scroll', () => { if (!ft) { ft = true; requestAnimationFrame(scrub); } }, { passive: true });
-    scrub();
-  }
-
   const intro = document.querySelector('.intro');
-  if (intro) setTimeout(() => intro.remove(), 1600);
+  if (intro) setTimeout(() => intro.remove(), 3100);
 
   const allPages = [...document.querySelectorAll('#slider > .page')];
   const tools = {
